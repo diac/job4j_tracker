@@ -7,11 +7,11 @@ public class BallStory {
         Wolf wolf = new Wolf();
         Fox fox = new Fox();
         Ball ball = new Ball();
-        System.out.println("Повстречал Колобок Зайца.");
+        System.out.println("РџРѕРІСЃС‚СЂРµС‡Р°Р» РљРѕР»РѕР±РѕРє Р—Р°Р№С†Р°.");
         hare.tryEat(ball);
-        System.out.println("Повстречал Колобок Волка.");
+        System.out.println("РџРѕРІСЃС‚СЂРµС‡Р°Р» РљРѕР»РѕР±РѕРє Р’РѕР»РєР°.");
         wolf.tryEat(ball);
-        System.out.println("Повстречал Колобок Лисицу.");
+        System.out.println("РџРѕРІСЃС‚СЂРµС‡Р°Р» РљРѕР»РѕР±РѕРє Р›РёСЃРёС†Сѓ.");
         fox.tryEat(ball);
     }
 }

@@ -2,14 +2,11 @@ package ru.job4j.oop;
 
 public class Error {
 
-    private final boolean active;
-    private final int status;
-    private final String message;
+    private boolean active;
+    private int status;
+    private String message;
 
     public Error() {
-        active = true;
-        status = 0;
-        message = "Unknown error";
     }
 
     public Error(boolean active, int status, String message) {

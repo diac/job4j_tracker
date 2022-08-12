@@ -9,7 +9,7 @@ public class Library {
         books[2] = new Book("Database Design", 1200);
         books[3] = new Book("1001 Dumpling Recipe", 1001);
         System.out.println("All books: ");
-        for (int i =0; i < books.length; i++) {
+        for (int i = 0; i < books.length; i++) {
             System.out.println(books[i].getName() + " (" + books[i].getPagesNumber() + ")");
         }
         System.out.println();
@@ -21,7 +21,7 @@ public class Library {
         System.out.println("books[3]: " + books[3].getName() + " (" + books[3].getPagesNumber() + ")");
         System.out.println();
         System.out.println("Find \"Clean Code\"");
-        for (int i =0; i < books.length; i++) {
+        for (int i = 0; i < books.length; i++) {
             if (books[i].getName().equals("Clean Code")) {
                 System.out.println(books[i].getName() + " (" + books[i].getPagesNumber() + ")");
             }

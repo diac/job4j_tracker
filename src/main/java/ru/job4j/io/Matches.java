@@ -6,35 +6,35 @@ public class Matches {
 
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
-        System.out.println("РРіСЂР° 11.");
+        System.out.println("Игра 11.");
         boolean turn = true;
         int count = 11;
         while (count > 0) {
-            String player = turn ? "РџРµСЂРІС‹Р№ РёРіСЂРѕРє" : "Р’С‚РѕСЂРѕР№ РёРіСЂРѕРє";
+            String player = turn ? "Первый игрок " : "Второй игрок";
             int matches;
             boolean legalMove;
             do {
-                System.out.println("РћСЃС‚Р°Р»РѕСЃСЊ СЃРїРёС‡РµРє: " + count);
+                System.out.println("Осталось спичек: " + count);
                 if (count >= 3) {
-                    System.out.println(player + " РІРІРµРґРёС‚Рµ С‡РёСЃР»Рѕ РѕС‚ 1 РґРѕ 3:");
+                    System.out.println(player + " введите число от 1 до 3:");
                 } else if (count == 2) {
-                    System.out.println(player + " РІРІРµРґРёС‚Рµ С‡РёСЃР»Рѕ РѕС‚ 1 РґРѕ 2:");
+                    System.out.println(player + " введите число от 1 до 2:");
                 } else {
-                    System.out.println(player + ", РІРІРµРґРёС‚Рµ 1, С‡С‚РѕР±С‹ РїРѕР±РµРґРёС‚СЊ!");
+                    System.out.println(player + ", введите 1, чтобы победить!");
                 }
                 matches = Integer.parseInt(input.nextLine());
                 legalMove = (matches <= count) && (matches >= 1) && (matches <= 3);
                 if (!legalMove) {
-                    System.out.println("РќРµРІРµСЂРЅС‹Р№ С…РѕРґ!");
+                    System.out.println("Неверный ход!");
                 }
             } while (!legalMove);
             turn = !turn;
             count -= matches;
         }
         if (!turn) {
-            System.out.println("Р’С‹РёРіСЂР°Р» РїРµСЂРІС‹Р№ РёРіСЂРѕРє");
+            System.out.println("Выиграл первый игрок");
         } else {
-            System.out.println("Р’С‹РёРіСЂР°Р» РІС‚РѕСЂРѕР№ РёРіСЂРѕРє");
+            System.out.println("Выиграл второй игрок");
         }
     }
 }

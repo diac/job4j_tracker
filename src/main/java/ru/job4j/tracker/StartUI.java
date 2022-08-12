@@ -11,7 +11,7 @@ public class StartUI {
             System.out.print("Select: ");
             int select = Integer.parseInt(scanner.nextLine());
             if (select != 6) {
-                System.out.println("Пользователь выбрал: " + select);
+                System.out.println("РџРѕР»СЊР·РѕРІР°С‚РµР»СЊ РІС‹Р±СЂР°Р»: " + select);
             } else {
                 run = false;
             }

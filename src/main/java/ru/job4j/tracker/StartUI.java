@@ -16,14 +16,15 @@ public class StartUI {
                 String name = scanner.nextLine();
                 Item item = new Item(name);
                 tracker.add(item);
-                System.out.println("Добавленная заявка: " + item);
+                System.out.println("Р”РѕР±Р°РІР»РµРЅРЅР°СЏ Р·Р°СЏРІРєР°: " + item);
             } else if (select != 6) {
-                System.out.println("Пользователь выбрал: " + select);
+                System.out.println("РџРѕР»СЊР·РѕРІР°С‚РµР»СЊ РІС‹Р±СЂР°Р»: " + select);
             } else {
                 run = false;
             }
         }
     }
+
     private void showMenu() {
         String[] menu = {
                 "Add new Item", "Show all items", "Edit item",

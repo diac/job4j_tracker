@@ -12,7 +12,6 @@ public class Matches {
         while (count > 0) {
             String player = turn ? "Первый игрок " : "Второй игрок";
             int matches;
-            boolean legalMove;
             do {
                 System.out.println("Осталось спичек: " + count);
                 if (count >= 3) {
@@ -23,11 +22,10 @@ public class Matches {
                     System.out.println(player + ", введите 1, чтобы победить!");
                 }
                 matches = Integer.parseInt(input.nextLine());
-                legalMove = (matches <= count) && (matches >= 1) && (matches <= 3);
-                if (!legalMove) {
+                if (!((matches <= count) && (matches >= 1) && (matches <= 3))) {
                     System.out.println("Неверный ход!");
                 }
-            } while (!legalMove);
+            } while (!((matches <= count) && (matches >= 1) && (matches <= 3)));
             turn = !turn;
             count -= matches;
         }

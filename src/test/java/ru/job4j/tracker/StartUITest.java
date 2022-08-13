@@ -100,7 +100,7 @@ public class StartUITest {
     }
 
     @Test
-    public void whenFinaAllTestOutputIsSuccessfully() {
+    public void whenFindAllTestOutputIsSuccessfully() {
         Output out = new StubOutput();
         Tracker tracker = new Tracker();
         Item item = tracker.add(new Item("test1"));

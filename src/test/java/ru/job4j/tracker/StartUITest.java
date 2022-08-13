@@ -127,6 +127,32 @@ public class StartUITest {
     }
 
     @Test
+    public void whenFindAllOnEmptyItemSetTestOutputIsSuccessfully() {
+        Output out = new StubOutput();
+        Input in = new StubInput(
+                new String[] {"0",  "1"}
+        );
+        Tracker tracker = new Tracker();
+        UserAction[] actions = new UserAction[]{
+                new ShowAllItemsAction(out),
+                new QuitAction(out)
+        };
+        new StartUI(out).init(in, tracker, actions);
+        String ln = System.lineSeparator();
+        assertThat(out.toString()).isEqualTo(
+                "Menu:" + ln
+                        + "0. Show all items" + ln
+                        + "1. Quit" + ln
+                        + "=== Show all items ===" + ln
+                        + "Хранилище еще не содержит заявок" + ln
+                        + "Menu:" + ln
+                        + "0. Show all items" + ln
+                        + "1. Quit" + ln
+                        + "Bye!" + ln
+        );
+    }
+
+    @Test
     public void whenFindItemsByNameTestOutputIsSuccessfully() {
         Output out = new StubOutput();
         Tracker tracker = new Tracker();

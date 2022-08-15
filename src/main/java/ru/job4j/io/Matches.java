@@ -21,7 +21,7 @@ public class Matches {
                 System.out.println(player + ", введите 1, чтобы победить!");
             }
             matches = Integer.parseInt(input.nextLine());
-            if (!((matches <= count) && (matches >= 1) && (matches <= 3))) {
+            if (!isValidMove(count, matches)) {
                 System.out.println("Неверный ход!");
             } else {
                 turn = !turn;
@@ -33,5 +33,9 @@ public class Matches {
         } else {
             System.out.println("Выиграл второй игрок");
         }
+    }
+
+    private static boolean isValidMove(int count, int matches) {
+        return (matches <= count) && (matches >= 1) && (matches <= 3);
     }
 }

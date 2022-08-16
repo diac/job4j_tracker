@@ -13,13 +13,7 @@ public class Matches {
             String player = turn ? "Первый игрок" : "Второй игрок";
             int matches;
             System.out.println("Осталось спичек: " + count);
-            if (count >= 3) {
-                System.out.println(player + " введите число от 1 до 3:");
-            } else if (count == 2) {
-                System.out.println(player + " введите число от 1 до 2:");
-            } else {
-                System.out.println(player + ", введите 1, чтобы победить!");
-            }
+            dialog(player, count);
             matches = Integer.parseInt(input.nextLine());
             if (!isValidMove(count, matches)) {
                 System.out.println("Неверный ход!");
@@ -37,5 +31,15 @@ public class Matches {
 
     private static boolean isValidMove(int count, int matches) {
         return (matches <= count) && (matches >= 1) && (matches <= 3);
+    }
+
+    private static void dialog(String player, int count) {
+        if (count >= 3) {
+            System.out.println(player + " введите число от 1 до 3:");
+        } else if (count == 2) {
+            System.out.println(player + " введите число от 1 до 2:");
+        } else {
+            System.out.println(player + ", введите 1, чтобы победить!");
+        }
     }
 }

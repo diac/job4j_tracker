@@ -7,22 +7,22 @@ public class PasswordValidator {
             throw new IllegalArgumentException("Пароль не может быть null!");
         }
         if (password.length() < 8 || password.length() > 32) {
-            return "Длина пароля должна находиться в диапазоне [8, 32]";
+            throw new IllegalArgumentException("Длина пароля должна находиться в диапазоне [8, 32]");
         }
         if (!stringHasUpperCaseChars(password)) {
-            return "Пароль должен содержать хотя бы один символ в верхнем регистре";
+             throw new IllegalArgumentException("Пароль должен содержать хотя бы один символ в верхнем регистре");
         }
         if (!stringHasLowerCaseChars(password)) {
-            return "Пароль должен содержать хотя бы один символ в нижнем регистре";
+            throw new IllegalArgumentException("Пароль должен содержать хотя бы один символ в нижнем регистре");
         }
         if (!stringHasDigits(password)) {
-            return "Пароль должен содержать хотя бы одну цифру";
+            throw new IllegalArgumentException("Пароль должен содержать хотя бы одну цифру");
         }
         if (!stringHasSpecialChars(password)) {
-            return "Пароль должен содержать хотя бы один специальный символ";
+            throw new IllegalArgumentException("Пароль должен содержать хотя бы один специальный символ");
         }
         if (stringHasBanWords(password)) {
-            return "Пароль не должен содержать запрещенных/небезопасных последовательностей символов";
+            throw new IllegalArgumentException("Пароль не должен содержать запрещенных/небезопасных последовательностей символов");
         }
         return password;
     }

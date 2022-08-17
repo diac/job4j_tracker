@@ -28,16 +28,4 @@ public class ValidateInput extends ConsoleInput {
         } while (invalid);
         return value;
     }
-
-    private boolean isNumber(String value) {
-        boolean rsl = true;
-        char[] check = value.toCharArray();
-        for (char num : check) {
-            if (num < 48 || num > 57) {
-                rsl = false;
-                break;
-            }
-        }
-        return rsl;
-    }
 }

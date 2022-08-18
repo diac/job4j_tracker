@@ -37,13 +37,10 @@ public class AnalyzeByMap {
                 subjectAverages.replace(subject.name(), subjectAverages.get(subject.name()) + subject.score());
             }
         }
-        for (String subjectName : subjectAverages.keySet()) {
-            double avg = subjectAverages.get(subjectName) / pupils.size();
-            subjectAverages.replace(subjectName, avg);
-        }
         List<Label> labels = new ArrayList<>();
         for (String subjectName : subjectAverages.keySet()) {
-            labels.add(new Label(subjectName, subjectAverages.get(subjectName)));
+            double avg = subjectAverages.get(subjectName) / pupils.size();
+            labels.add(new Label(subjectName, avg));
         }
         return labels;
     }

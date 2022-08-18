@@ -7,10 +7,15 @@ public class ConvertList2Array {
     public static int[][] toArray(List<Integer> list, int cells) {
         int groups = (int) Math.ceil((double) list.size() / cells);
         int[][] array = new int[groups][cells];
+        int row = 0;
+        int cell = 0;
         for (int i = 0; i < list.size(); i++) {
-            int row = i / cells;
-            int cell = i % cells;
             array[row][cell] = list.get(i);
+            cell++;
+            if (cell == cells) {
+                row++;
+                cell = 0;
+            }
         }
         return array;
     }

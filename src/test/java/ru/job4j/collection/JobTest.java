@@ -11,7 +11,7 @@ public class JobTest {
         Comparator<Job> comparator = new JobAscByName().thenComparing(new JobAscByPriority());
         int rsl = comparator.compare(
                 new Job("Impl task", 0),
-                new Job("Fix bug", 1)
+                new Job("Impl task", 1)
         );
         assertThat(rsl).isGreaterThan(0);
     }
@@ -21,7 +21,7 @@ public class JobTest {
         Comparator<Job> comparator = new JobAscByName().thenComparing(new JobDescByPriority());
         int rsl = comparator.compare(
                 new Job("Impl task", 0),
-                new Job("Fix bug", 1)
+                new Job("Impl task", 1)
         );
         assertThat(rsl).isGreaterThan(0);
     }
@@ -31,7 +31,7 @@ public class JobTest {
         Comparator<Job> comparator = new JobDescByName().thenComparing(new JobAscByPriority());
         int rsl = comparator.compare(
                 new Job("Impl task", 0),
-                new Job("Fix bug", 1)
+                new Job("Impl task", 1)
         );
         assertThat(rsl).isLessThan(0);
     }
@@ -41,7 +41,7 @@ public class JobTest {
         Comparator<Job> comparator = new JobDescByName().thenComparing(new JobDescByPriority());
         int rsl = comparator.compare(
                 new Job("Impl task", 0),
-                new Job("Fix bug", 1)
+                new Job("Impl task", 1)
         );
         assertThat(rsl).isLessThan(0);
     }

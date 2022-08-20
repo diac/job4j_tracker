@@ -25,13 +25,7 @@ public class ItemAscByNameTest {
                 new Item("Refactoring"),
                 new Item("Troubleshooting")
         );
-        boolean result = (
-                items.get(0).equals(expected.get(0))
-                    && items.get(1).equals(expected.get(1))
-                    && items.get(2).equals(expected.get(2))
-                    && items.get(3).equals(expected.get(3))
-                    && items.get(4).equals(expected.get(4))
-                );
-        assertThat(result).isTrue();
+        items.sort(new ItemAscByName());
+        assertThat(items).isEqualTo(expected);
     }
 }

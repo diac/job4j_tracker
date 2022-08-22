@@ -1,6 +1,8 @@
 package function;
 
 import org.junit.jupiter.api.Test;
+import ru.job4j.function.Folder;
+import ru.job4j.function.SearchFolder;
 
 import java.util.List;
 import java.util.function.Predicate;

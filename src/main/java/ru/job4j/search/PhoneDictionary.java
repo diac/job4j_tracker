@@ -18,11 +18,15 @@ public class PhoneDictionary {
      * @return Список пользователей, которые прошли проверку.
      */
     public ArrayList<Person> find(String key) {
-        Predicate<Person> combine = (person) ->
-                person.getName().contains(key)
-                        || person.getSurname().contains(key)
-                        || person.getAddress().contains(key)
-                        || person.getPhone().contains(key);
+        Predicate<Person> nameContainsKey = person -> person.getName().contains(key);
+        Predicate<Person> surnameContainsKey = person -> person.getPhone().contains(key);
+        Predicate<Person> addressContainsKey = person -> person.getAddress().contains(key);
+        Predicate<Person> phoneContainsKey = person -> person.getPhone().contains(key);
+        Predicate<Person> combine = (person) -> nameContainsKey
+                .or(surnameContainsKey)
+                .or(addressContainsKey)
+                .or(phoneContainsKey)
+                .test(person);
         ArrayList<Person> result = new ArrayList<>();
         for (var person : persons) {
             if (combine.test(person)) {

@@ -16,11 +16,11 @@ public class Profiles {
 
     public static List<Address> collectSortWithoutDuplicate(List<Profile> profiles) {
         return profiles.stream()
+                .map(Profile::getAddress)
                 .sorted(
-                        Comparator.comparing(left -> left.getAddress().getCity())
+                        Comparator.comparing(left -> left.getCity())
                 )
                 .distinct()
-                .map(Profile::getAddress)
                 .collect(Collectors.toList());
     }
 }

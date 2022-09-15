@@ -70,39 +70,34 @@ public class SqlTrackerTest {
     @Test
     public void whenFindAll() {
         SqlTracker tracker = new SqlTracker(connection);
-        List<Item> items = List.of(
-                new Item("item_1"),
-                new Item("item_2"),
-                new Item("item_3"),
-                new Item("item_4"),
-                new Item("item_5")
-        );
-        tracker.add(items.get(0));
-        tracker.add(items.get(1));
-        tracker.add(items.get(2));
-        tracker.add(items.get(3));
-        tracker.add(items.get(4));
-        List<Item> foundItems = tracker.findAll();
-        assertThat(foundItems).isEqualTo(items);
+        Item item1 = new Item("item_1");
+        Item item2 = new Item("item_2");
+        Item item3 = new Item("item_3");
+        Item item4 = new Item("item_4");
+        Item item5 = new Item("item_5");
+        tracker.add(item1);
+        tracker.add(item2);
+        tracker.add(item3);
+        tracker.add(item4);
+        tracker.add(item5);
+        assertThat(tracker.findAll()).containsAll(List.of(item1, item2, item3, item4, item5));
     }
 
     @Test
     public void whenFindByName() {
         SqlTracker tracker = new SqlTracker(connection);
-        List<Item> items = List.of(
-                new Item("item_1"),
-                new Item("item_2"),
-                new Item("item_3"),
-                new Item("item_4"),
-                new Item("item_5")
-        );
-        tracker.add(items.get(0));
-        tracker.add(items.get(1));
-        tracker.add(items.get(2));
-        tracker.add(items.get(3));
-        tracker.add(items.get(4));
-        List<Item> foundItems = tracker.findByName("item%");
-        assertThat(foundItems).isEqualTo(items);
+        Item item1 = new Item("item_1");
+        Item item2 = new Item("item_2");
+        Item item3 = new Item("item_3");
+        Item item4 = new Item("item_4");
+        Item item5 = new Item("item_5");
+        tracker.add(item1);
+        tracker.add(item2);
+        tracker.add(item3);
+        tracker.add(item4);
+        tracker.add(item5);
+        assertThat(tracker.findByName("item%"))
+                .containsAll(List.of(item1, item2, item3, item4, item5));
     }
 
     @Test

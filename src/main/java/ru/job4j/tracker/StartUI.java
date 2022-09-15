@@ -43,22 +43,25 @@ public class StartUI {
             Properties config = new Properties();
             config.load(in);
             Class.forName(config.getProperty("driver-class-name"));
-            Connection cn = DriverManager.getConnection(
-                    config.getProperty("url"),
-                    config.getProperty("username"),
-                    config.getProperty("password")
-            );
-            Store store = new SqlTracker(cn);
-            List<UserAction> actions = Arrays.asList(
-                    new CreateAction(output),
-                    new ShowAllItemsAction(output),
-                    new EditItemAction(output),
-                    new DeleteItemAction(output),
-                    new FindItemByIdAction(output),
-                    new FindItemsByNameAction(output),
-                    new QuitAction(output)
-            );
-            new StartUI(output).init(input, store, actions);
+            try (
+                    Connection cn = DriverManager.getConnection(
+                            config.getProperty("url"),
+                            config.getProperty("username"),
+                            config.getProperty("password")
+                    );
+                    SqlTracker store = new SqlTracker(cn)
+            ) {
+                List<UserAction> actions = Arrays.asList(
+                        new CreateAction(output),
+                        new ShowAllItemsAction(output),
+                        new EditItemAction(output),
+                        new DeleteItemAction(output),
+                        new FindItemByIdAction(output),
+                        new FindItemsByNameAction(output),
+                        new QuitAction(output)
+                );
+                new StartUI(output).init(input, store, actions);
+            }
         } catch (Exception e) {
             throw new IllegalStateException(e);
         }

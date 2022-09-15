@@ -1,0 +1,2 @@
+John Doe;johndoe@mailingservice.com;
+Jane Doe;janedoe@mailingservice.com;

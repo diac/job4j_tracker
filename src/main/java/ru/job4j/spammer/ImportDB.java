@@ -27,15 +27,7 @@ public class ImportDB {
         List<User> users = new ArrayList<>();
         try (BufferedReader rd = new BufferedReader(new FileReader(dump))) {
             rd.lines().forEach(
-                    line -> {
-                        Scanner scanner = new Scanner(line);
-                        scanner.useDelimiter(";");
-                        final String name = scanner.hasNext() ? scanner.next() : null;
-                        final String email = scanner.hasNext() ? scanner.next() : null;
-                        if (name != null && email != null) {
-                            users.add(new User(name, email));
-                        }
-                    }
+                    line -> users.add(fromCsv(line))
             );
         }
         return users;
@@ -56,6 +48,21 @@ public class ImportDB {
                 }
             }
         }
+    }
+
+    private static User fromCsv(String csvLine) {
+        Scanner scanner = new Scanner(csvLine);
+        scanner.useDelimiter(";");
+        if (!scanner.hasNext()) {
+            throw new IllegalArgumentException("Name value is missing");
+        }
+        scanner.next();
+        if (!scanner.hasNext()) {
+            throw new IllegalArgumentException("Email value is missing");
+        }
+        scanner.reset();
+        scanner.useDelimiter(";");
+        return new User(scanner.next(), scanner.next());
     }
 
     private static class User {

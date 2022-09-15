@@ -11,7 +11,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
-import java.util.Scanner;
 
 public class ImportDB {
 
@@ -51,17 +50,17 @@ public class ImportDB {
     }
 
     private static User fromCsv(String csvLine) {
-        Scanner scanner = new Scanner(csvLine);
-        scanner.useDelimiter(";");
-        if (!scanner.hasNext()) {
+        String[] args = csvLine.split(";", 2);
+        if (args.length < 1) {
             throw new IllegalArgumentException("Name value is missing");
-        }
-        final String name = scanner.next();
-        if (!scanner.hasNext()) {
+        } else if (args.length < 2) {
             throw new IllegalArgumentException("Email value is missing");
+        } else if (args[0].isBlank()) {
+            throw new IllegalArgumentException("Name value is blank");
+        } else if (args[1].isBlank()) {
+            throw new IllegalArgumentException("Email value is blank");
         }
-        final String email = scanner.next();
-        return new User(name, email);
+        return new User(args[0], args[1]);
     }
 
     private static class User {

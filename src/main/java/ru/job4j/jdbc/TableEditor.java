@@ -76,14 +76,12 @@ public class TableEditor implements AutoCloseable {
         executeUpdate(sql);
     }
 
-    private int executeUpdate(String sql) {
-        int result = 0;
+    private void executeUpdate(String sql) {
         try (Statement statement = connection.createStatement()) {
-            result = statement.executeUpdate(sql);
+            statement.executeUpdate(sql);
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return result;
     }
 
     public static String getTableScheme(Connection connection, String tableName) throws Exception {

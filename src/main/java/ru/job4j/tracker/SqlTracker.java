@@ -50,7 +50,7 @@ public class SqlTracker implements Store, AutoCloseable {
                 )
         ) {
             statement.setString(1, item.getName());
-            statement.setTimestamp(2, new Timestamp(System.currentTimeMillis()));
+            statement.setTimestamp(2, Timestamp.valueOf(item.getCreated()));
             statement.setInt(3, id);
             result = statement.executeUpdate() > 0;
         } catch (SQLException e) {
@@ -81,13 +81,7 @@ public class SqlTracker implements Store, AutoCloseable {
         try (Statement statement = cn.createStatement()) {
             var selection = statement.executeQuery("SELECT * FROM items;");
             while (selection.next()) {
-                items.add(
-                        new Item(
-                                selection.getInt(1),
-                                selection.getString(2),
-                                selection.getTimestamp(3).toLocalDateTime()
-                        )
-                );
+                items.add(fromResultSet(selection));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -104,13 +98,7 @@ public class SqlTracker implements Store, AutoCloseable {
             statement.setString(1, key);
             var selection = statement.executeQuery();
             while (selection.next()) {
-                items.add(
-                        new Item(
-                                selection.getInt(1),
-                                selection.getString(2),
-                                selection.getTimestamp(3).toLocalDateTime()
-                        )
-                );
+                items.add(fromResultSet(selection));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -129,15 +117,19 @@ public class SqlTracker implements Store, AutoCloseable {
             statement.setInt(1, id);
             var selection = statement.executeQuery();
             if (selection.next()) {
-                item = new Item(
-                        selection.getInt(1),
-                        selection.getString(2),
-                        selection.getTimestamp(3).toLocalDateTime()
-                );
+                item = fromResultSet(selection);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return item;
+    }
+
+    private Item fromResultSet(ResultSet resultset) throws SQLException {
+        return new Item(
+                resultset.getInt(1),
+                resultset.getString(2),
+                resultset.getTimestamp(3).toLocalDateTime()
+        );
     }
 }

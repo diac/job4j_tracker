@@ -70,20 +70,16 @@ public class SqlTrackerTest {
     @Test
     public void whenFindAll() {
         SqlTracker tracker = new SqlTracker(connection);
-        Item item1 = new Item("item_1");
-        Item item2 = new Item("item_2");
-        tracker.add(item1);
-        tracker.add(item2);
+        Item item1 = tracker.add(new Item("item_1"));
+        Item item2 = tracker.add(new Item("item_2"));
         assertThat(tracker.findAll()).containsAll(List.of(item1, item2));
     }
 
     @Test
     public void whenFindByName() {
         SqlTracker tracker = new SqlTracker(connection);
-        Item item1 = new Item("item_1");
-        Item item2 = new Item("item_2");
-        tracker.add(item1);
-        tracker.add(item2);
+        Item item1 = tracker.add(new Item("item_1"));
+        Item item2 = tracker.add(new Item("item_2"));
         assertThat(tracker.findByName("item%"))
                 .containsAll(List.of(item1, item2));
     }

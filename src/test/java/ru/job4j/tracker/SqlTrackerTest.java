@@ -72,15 +72,9 @@ public class SqlTrackerTest {
         SqlTracker tracker = new SqlTracker(connection);
         Item item1 = new Item("item_1");
         Item item2 = new Item("item_2");
-        Item item3 = new Item("item_3");
-        Item item4 = new Item("item_4");
-        Item item5 = new Item("item_5");
         tracker.add(item1);
         tracker.add(item2);
-        tracker.add(item3);
-        tracker.add(item4);
-        tracker.add(item5);
-        assertThat(tracker.findAll()).containsAll(List.of(item1, item2, item3, item4, item5));
+        assertThat(tracker.findAll()).containsAll(List.of(item1, item2));
     }
 
     @Test
@@ -88,16 +82,10 @@ public class SqlTrackerTest {
         SqlTracker tracker = new SqlTracker(connection);
         Item item1 = new Item("item_1");
         Item item2 = new Item("item_2");
-        Item item3 = new Item("item_3");
-        Item item4 = new Item("item_4");
-        Item item5 = new Item("item_5");
         tracker.add(item1);
         tracker.add(item2);
-        tracker.add(item3);
-        tracker.add(item4);
-        tracker.add(item5);
         assertThat(tracker.findByName("item%"))
-                .containsAll(List.of(item1, item2, item3, item4, item5));
+                .containsAll(List.of(item1, item2));
     }
 
     @Test

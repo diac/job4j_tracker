@@ -43,14 +43,12 @@ public class StartUI {
             Properties config = new Properties();
             config.load(in);
             Class.forName(config.getProperty("driver-class-name"));
-            try (
-                    Connection cn = DriverManager.getConnection(
-                            config.getProperty("url"),
-                            config.getProperty("username"),
-                            config.getProperty("password")
-                    );
-                    SqlTracker store = new SqlTracker(cn)
-            ) {
+            Connection cn = DriverManager.getConnection(
+                    config.getProperty("url"),
+                    config.getProperty("username"),
+                    config.getProperty("password")
+            );
+            try (SqlTracker store = new SqlTracker(cn)) {
                 List<UserAction> actions = Arrays.asList(
                         new CreateAction(output),
                         new ShowAllItemsAction(output),

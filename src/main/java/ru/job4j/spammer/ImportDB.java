@@ -56,13 +56,12 @@ public class ImportDB {
         if (!scanner.hasNext()) {
             throw new IllegalArgumentException("Name value is missing");
         }
-        scanner.next();
+        final String name = scanner.next();
         if (!scanner.hasNext()) {
             throw new IllegalArgumentException("Email value is missing");
         }
-        scanner.reset();
-        scanner.useDelimiter(";");
-        return new User(scanner.next(), scanner.next());
+        final String email = scanner.next();
+        return new User(name, email);
     }
 
     private static class User {

@@ -18,6 +18,17 @@ public class HbmTracker implements Store, AutoCloseable {
 
     private static final String FIND_ITEM_BY_ID_QUERY = "SELECT i FROM Item i WHERE id = :fId";
 
+    private static final String UPDATE_ITEM_QUERY = """
+            UPDATE
+                Item
+            SET
+                name = :fName
+            WHERE
+                id = :fId
+            """;
+
+    private static final String DELETE_ITEM_QUERY = "DELETE FROM Item WHERE id = :fId";
+
     private final StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
             .configure().build();
     private final SessionFactory sf = new MetadataSources(registry)
@@ -49,9 +60,11 @@ public class HbmTracker implements Store, AutoCloseable {
         try (Session session = sf.openSession()) {
             try {
                 session.beginTransaction();
-                session.update(item);
+                Query query = session.createQuery(UPDATE_ITEM_QUERY)
+                        .setParameter("fId", id)
+                        .setParameter("fName", item.getName());
+                result = query.executeUpdate() > 0;
                 session.getTransaction().commit();
-                result = true;
             } catch (HibernateException e) {
                 session.getTransaction().rollback();
             }
@@ -65,9 +78,10 @@ public class HbmTracker implements Store, AutoCloseable {
         try (Session session = sf.openSession()) {
             try {
                 session.beginTransaction();
-                session.delete(new Item(id, null));
+                Query query = session.createQuery(DELETE_ITEM_QUERY)
+                        .setParameter("fId", id);
+                result = query.executeUpdate() > 0;
                 session.getTransaction().commit();
-                result = true;
             } catch (HibernateException e) {
                 session.getTransaction().rollback();
             }

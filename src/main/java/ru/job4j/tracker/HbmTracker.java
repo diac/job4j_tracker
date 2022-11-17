@@ -12,11 +12,11 @@ import java.util.List;
 
 public class HbmTracker implements Store, AutoCloseable {
 
-    private static final String FIND_ALL_ITEMS_QUERY = "FROM Item";
+    private static final String FIND_ALL_ITEMS_QUERY = "SELECT i FROM Item i";
 
-    private static final String FIND_ITEMS_BY_NAME_QUERY = "FROM Item WHERE name = :fName";
+    private static final String FIND_ITEMS_BY_NAME_QUERY = "SELECT i FROM Item i WHERE name = :fName";
 
-    private static final String FIND_ITEM_BY_ID_QUERY = "FROM Item WHERE id = :fId";
+    private static final String FIND_ITEM_BY_ID_QUERY = "SELECT i FROM Item i WHERE id = :fId";
 
     private final StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
             .configure().build();
